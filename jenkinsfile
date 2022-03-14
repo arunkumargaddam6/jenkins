@@ -10,6 +10,7 @@ pipeline{
                     sudo apt install git
                     pip3 install ansible
                     https://github.com/arunkumargaddam6/jenkins.git
+                    cd jenkins
                     ansible-playbook test.yml
                 }
             }
