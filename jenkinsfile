@@ -5,15 +5,13 @@ pipeline{
         stages{
             stage('git checkout'){
                 steps{
-                   
-                   git clone https://github.com/arunkumargaddam6/jenkins.git
-                    
-                }
-            }
-            stage('run playbook')
-                          {
-                steps{
-                    ansible-playook test.yml
+                    sudo apt-get update
+                    sudo apt install python3-pip
+                    sudo apt install git
+                    pip3 install ansible
+                    https://github.com/arunkumargaddam6/jenkins.git
+                    cd jenkins
+                    ansible-playbook test.yml
                 }
             }
         }
