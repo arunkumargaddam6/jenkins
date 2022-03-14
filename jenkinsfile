@@ -1,17 +1,19 @@
-#creating a pipelin
+#creating a pipelines
 
 pipeline{
     agent any
         stages{
-            stage('build'){
+            stage('git checkout'){
                 steps{
-                    sudo apt-get update
-                    sudo apt install python3-pip
-                    sudo apt install git
-                    pip3 install ansible
-                    https://github.com/arunkumargaddam6/jenkins.git
-                    cd jenkins
-                    ansible-playbook test.yml
+                   
+                   git clone https://github.com/arunkumargaddam6/jenkins.git
+                    
+                }
+            }
+            stage('run playbook')
+                          {
+                steps{
+                    ansible-playook test.yml
                 }
             }
         }
