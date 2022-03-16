@@ -3,16 +3,33 @@
 pipeline{
     agent any
         stages{
-            stage ("build") {
+            stage ("git checkout") {
                 steps {
-                    sudo apt-get update
-                    sudo apt install python3-pip
-                    sudo apt install git
-                    pip3 install ansible
-                    git clone https://github.com/arunkumargaddam6/jenkins.git
-                    cd jenkins
-                    ansible-playbook test.yml
+            
+                    git credentialsID: '', url: 'clone https://github.com/arunkumargaddam6/jenkins.git'
+                    
                 }
             }
+               stage ("Maven Build") {
+                  steps{
+                     sh "mvn clean package"
+                     sh "mv target/*.war target/myweb.war"
+                  }
+               
+               }
+               
+               stage("deploy-dev"){
+                  steps{
+                  sshagent(['tamcat-new']){
+                  sh """
+                  
+                  
+                  """
+                  
+                  }
+                  }
+               
+               
+               }
         }
 }
